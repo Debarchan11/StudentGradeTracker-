@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentGradeTracker {
+    public static void main(String[] args) {
+        ArrayList<Integer> grades = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter student grades ");
+        
+        while (true) {
+            System.out.print("Enter grade: ");
+            int grade = scanner.nextInt();
+            
+  
+            if (grade == -1) {
+                break;
+            }
+
+            
+            if (grade < 0 || grade > 100) {
+                System.out.println("Please enter a valid grade between 0 and 100.");
+            } else {
+                grades.add(grade);
+            }
+        }
+
+                if (grades.isEmpty()) {
+            System.out.println("No grades were entered. Exiting the program.");
+        } else {
+                        double average = calculateAverage(grades);
+            int highest = findHighest(grades);
+            int lowest = findLowest(grades);
+
+            System.out.println("\nGrade Statistics:");
+            System.out.printf("Average Grade: %.2f\n", average);
+            System.out.println("Highest Grade: " + highest);
+            System.out.println("Lowest Grade: " + lowest);
+        }
+         }
+
+        
+
+  
+    public static double calculateAverage(ArrayList<Integer> grades) {
+        int sum = 0;
+        for(int grade:grades)  {
+            sum += grade;
+        }
+        return (double) sum / grades.size();
+    }
+
+    
+    public static int findHighest(ArrayList<Integer> grades) {
+        int highest = grades.get(0),i;
+        for (i=0;i<=grades.size();i++) {
+            if (i > highest) {
+                highest = i;
+            }
+        }
+        return highest;
+    }
+
+    
+    public static int findLowest(ArrayList<Integer> grades) {
+        int lowest = grades.get(0);
+        for (int grade:grades) {
+            if (grade < lowest) {
+                lowest = grade;
+            }
+        }
+        return lowest;
+    }
+}
